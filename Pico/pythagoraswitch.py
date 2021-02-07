@@ -1,7 +1,7 @@
-import machine
+from machine import Pin, PWM, Timer
 
-speaker = machine.PWM(machine.Pin(17, machine.Pin.OUT)) # 圧電スピーカーを接続しているGPIO（この例では17番）を作成し、それをPWM()へ渡す
-led_onboard = machine.Pin(25, machine.Pin.OUT) # 基板上のLEDを光らせたいのでGPIO25作成
+speaker = PWM(Pin(17, Pin.OUT)) # 圧電スピーカーを接続しているGPIO（この例では17番）を作成し、それをPWM()へ渡す
+led_onboard = Pin(25, Pin.OUT) # 基板上のLEDを光らせたいのでGPIO25作成
 
 # 使用する音の周波数を宣言しておく。ピタゴラスイッチは低いレ～高いファまでの音を使う
 D5 = 587.330
@@ -48,5 +48,5 @@ def beat(timer):
     i += 1 # メロディーを次に進めて終わり
 
 # 8分3連符の間隔でコールバックを呼ぶタイマーを作成し、メロディースタート
-tim = machine.Timer()
-tim.init(period=mspb, mode=machine.Timer.PERIODIC, callback=beat)
+tim = Timer()
+tim.init(period=mspb, mode=Timer.PERIODIC, callback=beat)
