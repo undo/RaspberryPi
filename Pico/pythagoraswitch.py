@@ -1,6 +1,6 @@
 from machine import Pin, PWM, Timer
 
-speaker = PWM(Pin(17, Pin.OUT)) # 圧電スピーカーを接続しているGPIO（この例では17番）を作成し、それをPWM()へ渡す
+speaker = PWM(Pin(17, Pin.OUT)) # スピーカーを接続しているGPIO（この例では17番）を作成し、それをPWM()へ渡す
 led_onboard = Pin(25, Pin.OUT) # 基板上のLEDを光らせたいのでGPIO25作成
 
 # 使用する音の周波数を宣言しておく。ピタゴラスイッチは低いラ～高いドまでの音を使う
