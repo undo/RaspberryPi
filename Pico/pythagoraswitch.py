@@ -30,18 +30,18 @@ def beat(timer):
     global led_onboard
     global i
     global speaker
-    
+
     if i >= len(melody): # メロディーを最後まで演奏し終えたら
         speaker.deinit() # スピーカーのPWMを破棄して
         led_onboard.value(0) # LEDを消して
         timer.deinit() # タイマーを破棄して終了
-        
+
     elif int(melody[i]) == 0: # メロディー音が0、つまり無音（休符）の場合
         speaker.duty_u16(0) # PWMのDutyを0とすることで波形は出力されずLOWとなり、音は出ない
         led_onboard.value(0) # LEDを消す
-        
+
     else:
-        speaker.freq(int(melody[i])) # PWMの周波数を次のメロディー音の周波数に変更する
+        speaker.freq(int(melody[i] + 0.5))  # PWMの周波数を次のメロディー音の周波数に変更する
         speaker.duty_u16(0x8000) # PWMのDutyを50％に戻し、音を出す。Dutyは0～0xFFFFつまり65535までの間の値で設定
         led_onboard.value(1) # LEDを光らせる
 
